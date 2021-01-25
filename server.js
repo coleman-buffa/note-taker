@@ -16,9 +16,12 @@ app.get('/notes', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 app.get('/api/notes', function(req, res) {
-	const db = fs.readFileSync(path.join(__dirname, '/db/db.json'));
-	return res.send(db);
+	const db = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json')));	
+	return res.json(db);
 });
+app.post('/api/notes', function(req, res) {
+	req
+})
 app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
