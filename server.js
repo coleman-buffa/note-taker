@@ -21,8 +21,7 @@ app.get('/api/notes', function(req, res) {
 	return res.json(db);
 });
 app.post('/api/notes', function(req, res) {
-	//Add new list item to db.json
-	//Read contents of db.json so it can be added to
+
 	const db = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json')));	
 	db.push(req.body);
 	for (let i = 0; i < db.length; i++) {
@@ -30,14 +29,18 @@ app.post('/api/notes', function(req, res) {
 	};
 	fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(db));
 	return res.send(res.body);
-
-	//return the note so the next function can do stuff with it
 });
 app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
-app.post('/api/notes', function(req, res) {
-
+app.delete('/api/notes/:id', function(req, res) {
+	const db = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json')));	
+	db.splice(req.params.id-1,1);
+	for (let i = 0; i < db.length; i++) {
+		db[i].id = i + 1;
+	};
+	fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(db));
+	res.send();
 });
 
 //Reset db.json to test state
