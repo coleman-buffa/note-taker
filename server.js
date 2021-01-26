@@ -22,7 +22,11 @@ app.get('/api/notes', function(req, res) {
 });
 app.post('/api/notes', function(req, res) {
 	//Add new list item to db.json
-	let db = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json')));
+	//Read contents of db.json so it can be added to
+	const db = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json')));	
+	db.push(req.body);
+	fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(db));
+	return res.send(res.body);
 
 	//return the note so the next function can do stuff with it
 });
@@ -30,10 +34,12 @@ app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 app.post('/api/notes', function(req, res) {
-	//
+
 });
 
-
+//Reset db.json to test state
+let dbReset = [{"id": 1, "title": "Something need doing?", "text": "Zug Zug"}];
+fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(dbReset));
 
 //Start the server
 app.listen(PORT, function() {
