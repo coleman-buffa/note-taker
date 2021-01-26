@@ -25,6 +25,9 @@ app.post('/api/notes', function(req, res) {
 	//Read contents of db.json so it can be added to
 	const db = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json')));	
 	db.push(req.body);
+	for (let i = 0; i < db.length; i++) {
+		db[i].id = i + 1;
+	};
 	fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(db));
 	return res.send(res.body);
 
@@ -38,7 +41,7 @@ app.post('/api/notes', function(req, res) {
 });
 
 //Reset db.json to test state
-let dbReset = [{"id": 1, "title": "Something need doing?", "text": "Zug Zug"}];
+let dbReset = [{"title": "Something need doing?", "text": "Zug Zug", "id": 1}];
 fs.writeFileSync(path.join(__dirname, '/db/db.json'), JSON.stringify(dbReset));
 
 //Start the server
