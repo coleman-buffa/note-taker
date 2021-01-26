@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Handle data parsing
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes 
 app.get('/notes', function(req, res) {
@@ -20,10 +21,16 @@ app.get('/api/notes', function(req, res) {
 	return res.json(db);
 });
 app.post('/api/notes', function(req, res) {
-	req
-})
+	//Add new list item to db.json
+	let db = JSON.parse(fs.readFileSync(path.join(__dirname, '/db/db.json')));
+
+	//return the note so the next function can do stuff with it
+});
 app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+app.post('/api/notes', function(req, res) {
+	//
 });
 
 
