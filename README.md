@@ -66,7 +66,7 @@ This project requires the use of Node.js and Express. Once you have Node.js inst
 
 ## Deployed Link
 
-[Deployed on Heroku](https://blooming-cove-29621.herokuapp.com/)
+[Deployed on Heroku](https://note-taker-cb.herokuapp.com/)
 
 ## Authors
 
