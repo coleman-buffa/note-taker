@@ -5,8 +5,8 @@ This application helps you take notes! It allows you to assign a note name and t
 
 ## Table of Contents
 
-||||
-|:-|:-|:-|:-|:-
+| |||
+|:-|:-|:-|
 | [Project Introduction](#note-taker) | [Table of Contents](#table-of-contents) | [Goals and Methods](#goals-and-methods) 
 | [Installation and Use](#installation-and-use) | [Technologies](#technologies) | [Deployed Link](#deployed-link) |
 | [Authors](#authors) | [Acknowledgments](#acknowledgments) | [License](#license) |
